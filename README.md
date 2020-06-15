@@ -3,9 +3,9 @@ This is a project demo that uses Vanilla JS to build a Single Page Application.
 
 Tutorial here: https://www.sitepoint.com/single-page-app-without-framework/
 
+Demo Repo: https://github.com/sitepoint-editors/single-page-application
 
-
-There are a few things we should be concerned with in our finished app:
+There are a few things we should be concerned with in the finished app:
 
 ## DOM Performance. 
 
@@ -24,4 +24,6 @@ For the server code, it’s easier to break down code into modular parts since i
 Some manual testing was done during development. For a production-ready application, we need to set up a testing framework like Jasmine, Mocha or Chai to automate this work. This will help prevent recurring errors.
 
 
-These are just a few of the many issuesfaced when you approaching project development without using a framework. Using something such as Angular, React or Vue will help you alleviate a lot of these concerns.
+These are just a few of the many issuesfaced when approaching project development without using a framework. Using something such as Angular, React or Vue will help alleviate a lot of these concerns.
+
+### Usage.
