@@ -1,2 +1,2 @@
 # currency-convertor
-A single page currency convertor app built without a front-end framework
+This is a project demo that uses Vanilla JS to build a Single Page Application.
