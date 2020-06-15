@@ -1,7 +1,11 @@
 require("dotenv").config(); // read .env files
 const express = require("express");
 const bodyParser = require("body-parser");
-const { getRates, getSymbols } = require("./lib/fixer-service");
+const {
+  getRates,
+  getSymbols,
+  getHistoricalRate,
+} = require("./lib/fixer-service");
 const { convertCurrency } = require("./lib/free-currency-service");
 
 const app = express();
@@ -33,12 +37,10 @@ const errorHandler = (err, req, res) => {
       .send({ title: "Server responded with an error", message: err.message });
   } else if (err.request) {
     // The request was made but no response was received
-    res
-      .status(503)
-      .send({
-        title: "Unable to communicate with server",
-        message: err.message,
-      });
+    res.status(503).send({
+      title: "Unable to communicate with server",
+      message: err.message,
+    });
   } else {
     // Something happened in setting up the request that triggered an Error
     res
@@ -74,6 +76,18 @@ app.post("/api/convert", async (req, res) => {
   try {
     const { from, to } = req.body;
     const data = await convertCurrency(from, to);
+    res.setHeader("Content-Type", "application/json");
+    res.send(data);
+  } catch (error) {
+    errorHandler(error, req, res);
+  }
+});
+
+// Fetch Currency Rates by date
+app.post("/api/historical", async (req, res) => {
+  try {
+    const { date } = req.body;
+    const data = await getHistoricalRate(date);
     res.setHeader("Content-Type", "application/json");
     res.send(data);
   } catch (error) {
